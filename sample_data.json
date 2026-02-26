@@ -1,0 +1,5 @@
+[
+  {"source": "file_source", "timestamp": "2026-02-26T00:00:00Z", "value": 100.0, "unit": "USD"},
+  {"source": "file_source", "timestamp": "2026-02-26T00:01:00Z", "value": 100.5, "unit": "USD"},
+  {"source": "file_source", "timestamp": "2026-02-26T00:02:00Z", "value": 101.0, "unit": "USD"}
+]

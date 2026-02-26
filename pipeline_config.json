@@ -1,0 +1,28 @@
+[
+  {
+    "name": "rest_api",
+    "kind": "rest",
+    "url": "http://127.0.0.1:18932/api/rest"
+  },
+  {
+    "name": "csv_feed",
+    "kind": "csv",
+    "url": "http://127.0.0.1:18932/api/csv"
+  },
+  {
+    "name": "ws_stream",
+    "kind": "websocket",
+    "url": "ws://127.0.0.1:18932/api/ws"
+  },
+  {
+    "name": "graphql_api",
+    "kind": "graphql",
+    "url": "http://127.0.0.1:18932/api/graphql",
+    "query": "{ records { source timestamp value unit } }"
+  },
+  {
+    "name": "local_file",
+    "kind": "file",
+    "path": "./sample_data.json"
+  }
+]
