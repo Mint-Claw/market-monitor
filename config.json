@@ -1,0 +1,37 @@
+{
+  "sources": [
+    {
+      "name": "REST_API",
+      "type": "rest",
+      "url": "http://localhost:8080/api/data",
+      "unit": "USD"
+    },
+    {
+      "name": "CSV_File",
+      "type": "csv",
+      "path": "data/prices.csv",
+      "unit": "USD"
+    },
+    {
+      "name": "WebSocket_Stream",
+      "type": "websocket",
+      "url": "ws://localhost:8080/ws/data",
+      "unit": "USD"
+    },
+    {
+      "name": "GraphQL_Endpoint",
+      "type": "graphql",
+      "url": "http://localhost:8080/graphql",
+      "query": "{ data { timestamp value } }",
+      "unit": "USD"
+    },
+    {
+      "name": "JSON_File",
+      "type": "file",
+      "path": "data/market_data.json",
+      "unit": "USD"
+    }
+  ],
+  "timeout": 15,
+  "output": "output.json"
+}
