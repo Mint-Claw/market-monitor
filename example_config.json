@@ -1,0 +1,45 @@
+{
+  "sources": [
+    {
+      "name": "rest_api",
+      "type": "rest",
+      "url": "http://127.0.0.1:8888/api/rest",
+      "timeout": 10.0,
+      "params": {
+        "count": "250"
+      }
+    },
+    {
+      "name": "csv_data",
+      "type": "csv",
+      "url": "http://127.0.0.1:8888/api/csv",
+      "params": {
+        "count": "250"
+      }
+    },
+    {
+      "name": "websocket_stream",
+      "type": "websocket",
+      "url": "ws://127.0.0.1:8888/ws",
+      "params": {
+        "duration": 3
+      }
+    },
+    {
+      "name": "graphql_api",
+      "type": "graphql",
+      "url": "http://127.0.0.1:8888/api/graphql",
+      "params": {
+        "query": "{ metrics { timestamp value unit } }"
+      }
+    },
+    {
+      "name": "local_file",
+      "type": "file",
+      "url": "tests/test_data/data.json"
+    }
+  ],
+  "output_path": "pipeline_output.json",
+  "max_concurrent": 10,
+  "retry_attempts": 2
+}
