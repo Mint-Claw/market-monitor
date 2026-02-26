@@ -1,0 +1,43 @@
+sources:
+  - name: rest_market_data
+    type: rest
+    url: "http://localhost:9753/api/market"
+    timeout: 10
+    params:
+      limit: 500
+
+  - name: csv_historical
+    type: csv
+    path: "data/historical.csv"
+    encoding: utf-8
+
+  - name: ws_live_feed
+    type: websocket
+    url: "ws://localhost:9753/ws/feed"
+    timeout: 5
+    max_messages: 500
+
+  - name: graphql_analytics
+    type: graphql
+    url: "http://localhost:9753/graphql"
+    timeout: 10
+    query: |
+      {
+        analytics {
+          source
+          timestamp
+          value
+          unit
+        }
+      }
+
+  - name: json_file_snapshot
+    type: file
+    path: "data/snapshot.json"
+
+pipeline:
+  max_concurrency: 10
+  global_timeout: 15
+  output_path: "output/merged.json"
+  sort_by: timestamp
+  sort_order: asc
