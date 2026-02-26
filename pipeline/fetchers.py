@@ -54,28 +54,28 @@ async def fetch_websocket(session: aiohttp.ClientSession, config: SourceConfig) 
     subscribe_msg = config.params.get("subscribe_message")
 
     try:
-        async with session.ws_connect(
-            config.url,
-            timeout=config.timeout,
-            headers=config.headers,
-        ) as ws:
-            if subscribe_msg:
-                await ws.send_json(subscribe_msg)
+        async with asyncio.timeout(config.timeout):
+            async with session.ws_connect(
+                config.url,
+                headers=config.headers,
+            ) as ws:
+                if subscribe_msg:
+                    await ws.send_json(subscribe_msg)
 
-            deadline = asyncio.get_event_loop().time() + duration
-            while asyncio.get_event_loop().time() < deadline:
-                try:
-                    msg = await asyncio.wait_for(ws.receive(), timeout=1.0)
-                    if msg.type == _aio.WSMsgType.TEXT:
-                        data = json.loads(msg.data)
-                        if isinstance(data, list):
-                            results.extend(data)
-                        else:
-                            results.append(data)
-                    elif msg.type in (_aio.WSMsgType.CLOSED, _aio.WSMsgType.ERROR):
-                        break
-                except asyncio.TimeoutError:
-                    continue
+                deadline = asyncio.get_event_loop().time() + duration
+                while asyncio.get_event_loop().time() < deadline:
+                    try:
+                        msg = await asyncio.wait_for(ws.receive(), timeout=1.0)
+                        if msg.type == _aio.WSMsgType.TEXT:
+                            data = json.loads(msg.data)
+                            if isinstance(data, list):
+                                results.extend(data)
+                            else:
+                                results.append(data)
+                        elif msg.type in (_aio.WSMsgType.CLOSED, _aio.WSMsgType.ERROR):
+                            break
+                    except asyncio.TimeoutError:
+                        continue
     except Exception as e:
         logger.warning("WebSocket fetch error for %s: %s", config.name, e)
         raise

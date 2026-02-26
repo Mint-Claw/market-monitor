@@ -82,8 +82,9 @@ class Pipeline:
         stats = PipelineStats()
         t0 = time.perf_counter()
 
+        timeout = aiohttp.ClientTimeout(total=30, connect=10)
         connector = aiohttp.TCPConnector(limit=20)
-        async with aiohttp.ClientSession(connector=connector) as session:
+        async with aiohttp.ClientSession(connector=connector, timeout=timeout) as session:
             t_fetch_start = time.perf_counter()
             tasks = [self._fetch_one(session, src, stats) for src in self.sources]
             results = await asyncio.gather(*tasks)
