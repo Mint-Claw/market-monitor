@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+venv/
+*.egg-info/
+dist/
+build/
+.coverage
+htmlcov/
+.DS_Store
+pipeline_output.json
+output.json
