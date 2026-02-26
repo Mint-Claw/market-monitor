@@ -1,0 +1,16 @@
+{
+  "records": [
+    {"source": "ws", "timestamp": 1, "value": 10, "unit": "usd"},
+    {"source": "csv", "timestamp": 2, "value": "20", "unit": "usd"},
+    {"source": "rest", "timestamp": 3, "value": 30, "unit": "usd"},
+    {"source": "graphql", "timestamp": 4, "value": 40, "unit": "usd"},
+    {"source": "file", "timestamp": 5, "value": 50, "unit": "usd"}
+  ],
+  "stats": {
+    "total_records": 5,
+    "source_count": 5,
+    "success_sources": 5,
+    "failed_sources": 0,
+    "failures": []
+  }
+}
