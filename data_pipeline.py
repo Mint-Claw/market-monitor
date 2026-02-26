@@ -205,7 +205,7 @@ class DataPipeline:
         ts_field = mapping.get("timestamp", "timestamp")
         timestamp = record.get(ts_field) or record.get("time") or record.get("date")
         if not timestamp:
-            timestamp = datetime.utcnow().isoformat()
+            timestamp = datetime.now().astimezone().isoformat()
         elif isinstance(timestamp, (int, float)):
             timestamp = datetime.fromtimestamp(timestamp).isoformat()
         
@@ -292,6 +292,111 @@ async def run_pipeline(sources: list[SourceConfig]) -> tuple[list[dict], Pipelin
     """Convenience function to run pipeline"""
     async with DataPipeline(sources) as pipeline:
         return await pipeline.run()
+
+
+def load_config(config_path: str = "pipeline_config.json") -> tuple[list[SourceConfig], dict]:
+    """
+    Load pipeline configuration from JSON file.
+    Returns (sources, pipeline_settings)
+    """
+    path = Path(config_path)
+    if not path.exists():
+        raise FileNotFoundError(f"Config file not found: {config_path}")
+    
+    with open(path) as f:
+        config = json.load(f)
+    
+    sources = []
+    for src in config.get("sources", []):
+        source_type = SourceType(src["type"])
+        sources.append(SourceConfig(
+            name=src["name"],
+            type=source_type,
+            url=src.get("url"),
+            path=src.get("path"),
+            query=src.get("query"),
+            headers=src.get("headers"),
+            timeout=src.get("timeout", 10.0),
+            field_mapping=src.get("field_mapping")
+        ))
+    
+    pipeline_settings = config.get("pipeline", {})
+    return sources, pipeline_settings
+
+
+class IncrementalPipeline(DataPipeline):
+    """Pipeline with incremental update support (bonus feature)"""
+    
+    def __init__(self, sources: list[SourceConfig], state_file: str = ".pipeline_state.json", **kwargs):
+        super().__init__(sources, **kwargs)
+        self.state_file = Path(state_file)
+        self._state = self._load_state()
+    
+    def _load_state(self) -> dict:
+        """Load last-seen timestamps per source"""
+        if self.state_file.exists():
+            with open(self.state_file) as f:
+                return json.load(f)
+        return {"last_timestamps": {}}
+    
+    def _save_state(self, records: list[dict]):
+        """Update state with latest timestamps"""
+        for rec in records:
+            source = rec.get("source")
+            ts = rec.get("timestamp")
+            if source and ts:
+                current = self._state["last_timestamps"].get(source, "")
+                if ts > current:
+                    self._state["last_timestamps"][source] = ts
+        
+        with open(self.state_file, "w") as f:
+            json.dump(self._state, f, indent=2)
+    
+    def get_last_timestamp(self, source_name: str) -> Optional[str]:
+        """Get last-seen timestamp for a source"""
+        return self._state["last_timestamps"].get(source_name)
+    
+    async def run(self, incremental: bool = True) -> tuple[list[dict], PipelineStats]:
+        """Run pipeline, optionally filtering to only new records"""
+        records, stats = await super().run()
+        
+        if incremental:
+            # Filter to only records newer than last seen
+            filtered = []
+            for rec in records:
+                source = rec.get("source")
+                ts = rec.get("timestamp")
+                last_ts = self.get_last_timestamp(source)
+                if not last_ts or ts > last_ts:
+                    filtered.append(rec)
+            
+            stats = PipelineStats(
+                total_records=len(filtered),
+                sources_succeeded=stats.sources_succeeded,
+                sources_failed=stats.sources_failed,
+                duration_ms=stats.duration_ms,
+                errors=stats.errors
+            )
+            records = filtered
+        
+        # Save state for next incremental run
+        self._save_state(records)
+        
+        return records, stats
+
+
+async def run_pipeline_from_config(config_path: str = "pipeline_config.json") -> tuple[list[dict], PipelineStats]:
+    """Run pipeline from config file"""
+    sources, settings = load_config(config_path)
+    
+    incremental_settings = settings.get("incremental", {})
+    if incremental_settings.get("enabled"):
+        state_file = incremental_settings.get("state_file", ".pipeline_state.json")
+        async with IncrementalPipeline(sources, state_file=state_file, timeout=settings.get("timeout", 15.0)) as pipeline:
+            return await pipeline.run(incremental=True)
+    else:
+        async with DataPipeline(sources, timeout=settings.get("timeout", 15.0)) as pipeline:
+            return await pipeline.run()
 
 
 # Example configurations

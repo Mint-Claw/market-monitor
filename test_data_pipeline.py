@@ -7,7 +7,8 @@ import pytest
 from pathlib import Path
 from data_pipeline import (
     DataPipeline, SourceConfig, SourceType, 
-    NormalizedRecord, run_pipeline
+    NormalizedRecord, run_pipeline, load_config,
+    IncrementalPipeline
 )
 
 
@@ -261,6 +262,113 @@ class TestOutputFormat:
             "succeeded": stats.sources_succeeded
         }})
         assert isinstance(output, str)
+
+
+class TestConfigLoader:
+    def test_load_config(self, tmp_path):
+        config = {
+            "pipeline": {"timeout": 10.0},
+            "sources": [
+                {"name": "test", "type": "file", "path": "./data.json"}
+            ]
+        }
+        config_file = tmp_path / "config.json"
+        config_file.write_text(json.dumps(config))
+        
+        sources, settings = load_config(str(config_file))
+        
+        assert len(sources) == 1
+        assert sources[0].name == "test"
+        assert sources[0].type == SourceType.FILE
+        assert settings["timeout"] == 10.0
+    
+    def test_config_with_all_source_types(self, tmp_path):
+        config = {
+            "sources": [
+                {"name": "rest", "type": "rest", "url": "http://api.test.com"},
+                {"name": "csv", "type": "csv", "path": "./data.csv"},
+                {"name": "ws", "type": "websocket", "url": "ws://stream.test.com"},
+                {"name": "gql", "type": "graphql", "url": "http://gql.test.com", "query": "{ data }"},
+                {"name": "file", "type": "file", "path": "./data.json"}
+            ]
+        }
+        config_file = tmp_path / "config.json"
+        config_file.write_text(json.dumps(config))
+        
+        sources, _ = load_config(str(config_file))
+        
+        assert len(sources) == 5
+        assert {s.type for s in sources} == {
+            SourceType.REST, SourceType.CSV, SourceType.WEBSOCKET,
+            SourceType.GRAPHQL, SourceType.FILE
+        }
+
+
+class TestIncrementalUpdates:
+    @pytest.mark.asyncio
+    async def test_incremental_pipeline(self, tmp_path):
+        # Create test data
+        test_data = [
+            {"timestamp": "2026-01-01T00:00:00", "value": 100},
+            {"timestamp": "2026-01-02T00:00:00", "value": 200}
+        ]
+        json_file = tmp_path / "data.json"
+        json_file.write_text(json.dumps(test_data))
+        state_file = tmp_path / ".state.json"
+        
+        sources = [
+            SourceConfig(
+                name="test",
+                type=SourceType.FILE,
+                path=str(json_file)
+            )
+        ]
+        
+        # First run - get all records
+        async with IncrementalPipeline(sources, state_file=str(state_file)) as pipeline:
+            records, stats = await pipeline.run(incremental=True)
+        
+        assert len(records) == 2
+        assert state_file.exists()
+        
+        # Second run with same data - should be filtered (no new records)
+        async with IncrementalPipeline(sources, state_file=str(state_file)) as pipeline:
+            records, stats = await pipeline.run(incremental=True)
+        
+        assert len(records) == 0  # All records already seen
+    
+    @pytest.mark.asyncio
+    async def test_incremental_new_records(self, tmp_path):
+        state_file = tmp_path / ".state.json"
+        json_file = tmp_path / "data.json"
+        
+        sources = [
+            SourceConfig(
+                name="test",
+                type=SourceType.FILE,
+                path=str(json_file)
+            )
+        ]
+        
+        # First run
+        json_file.write_text(json.dumps([
+            {"timestamp": "2026-01-01", "value": 100}
+        ]))
+        async with IncrementalPipeline(sources, state_file=str(state_file)) as pipeline:
+            records1, _ = await pipeline.run(incremental=True)
+        
+        assert len(records1) == 1
+        
+        # Second run with newer data
+        json_file.write_text(json.dumps([
+            {"timestamp": "2026-01-01", "value": 100},  # Old
+            {"timestamp": "2026-01-02", "value": 200}   # New
+        ]))
+        async with IncrementalPipeline(sources, state_file=str(state_file)) as pipeline:
+            records2, _ = await pipeline.run(incremental=True)
+        
+        assert len(records2) == 1  # Only the new record
+        assert records2[0]["timestamp"] == "2026-01-02"
 
 
 if __name__ == "__main__":
