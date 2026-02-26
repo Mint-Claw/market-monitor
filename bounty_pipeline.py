@@ -17,7 +17,6 @@ import csv
 import hashlib
 import json
 import os
-import random
 import socket
 import ssl
 import struct
@@ -35,6 +34,8 @@ class SourceConfig:
     url: str | None = None
     path: str | None = None
     timeout: float = 5.0
+    retries: int = 1
+    retry_backoff_ms: int = 150
     unit: str | None = None
     query: str | None = None
 
@@ -79,27 +80,44 @@ def _read_file(path: str) -> str:
         return f.read()
 
 
+async def _retry(coro_factory, retries: int, backoff_ms: int):
+    last_error = None
+    for i in range(retries + 1):
+        try:
+            return await coro_factory()
+        except Exception as e:
+            last_error = e
+            if i >= retries:
+                break
+            await asyncio.sleep((backoff_ms / 1000.0) * (2 ** i))
+    raise last_error
+
+
 async def fetch_rest(cfg: SourceConfig) -> List[Dict[str, Any]]:
-    payload = await asyncio.to_thread(_http_json, cfg.url, cfg.timeout)
+    payload = await _retry(lambda: asyncio.to_thread(_http_json, cfg.url, cfg.timeout), cfg.retries, cfg.retry_backoff_ms)
     rows = payload if isinstance(payload, list) else payload.get("data", payload.get("items", []))
     return [normalize_record(cfg.name, r, cfg.unit) for r in rows]
 
 
 async def fetch_csv(cfg: SourceConfig) -> List[Dict[str, Any]]:
-    text = await asyncio.to_thread(_http_text, cfg.url, cfg.timeout)
+    text = await _retry(lambda: asyncio.to_thread(_http_text, cfg.url, cfg.timeout), cfg.retries, cfg.retry_backoff_ms)
     rows = list(csv.DictReader(text.splitlines()))
     return [normalize_record(cfg.name, r, cfg.unit) for r in rows]
 
 
 async def fetch_graphql(cfg: SourceConfig) -> List[Dict[str, Any]]:
-    payload = await asyncio.to_thread(_http_json, cfg.url, cfg.timeout, "POST", {"query": cfg.query or "{ readings { timestamp value unit } }"})
+    payload = await _retry(
+        lambda: asyncio.to_thread(_http_json, cfg.url, cfg.timeout, "POST", {"query": cfg.query or "{ readings { timestamp value unit } }"}),
+        cfg.retries,
+        cfg.retry_backoff_ms,
+    )
     data = payload.get("data", {})
     rows = data.get("readings") or data.get("items") or []
     return [normalize_record(cfg.name, r, cfg.unit) for r in rows]
 
 
 async def fetch_file(cfg: SourceConfig) -> List[Dict[str, Any]]:
-    text = await asyncio.to_thread(_read_file, cfg.path)
+    text = await _retry(lambda: asyncio.to_thread(_read_file, cfg.path), cfg.retries, cfg.retry_backoff_ms)
     if cfg.path.endswith(".json"):
         raw = json.loads(text)
         rows = raw if isinstance(raw, list) else raw.get("items", [])
@@ -189,7 +207,7 @@ def _ws_connect_and_read(url: str, timeout: float = 5.0, max_messages: int = 3) 
 
 
 async def fetch_websocket(cfg: SourceConfig) -> List[Dict[str, Any]]:
-    rows = await asyncio.to_thread(_ws_connect_and_read, cfg.url, cfg.timeout, 5)
+    rows = await _retry(lambda: asyncio.to_thread(_ws_connect_and_read, cfg.url, cfg.timeout, 5), cfg.retries, cfg.retry_backoff_ms)
     return [normalize_record(cfg.name, r, cfg.unit) for r in rows]
 
 

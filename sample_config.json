@@ -1,0 +1,37 @@
+{
+  "sources": [
+    {
+      "name": "ws",
+      "type": "websocket",
+      "url": "ws://127.0.0.1:8766/stream",
+      "timeout": 5,
+      "retries": 1,
+      "retry_backoff_ms": 100
+    },
+    {
+      "name": "csv",
+      "type": "csv",
+      "url": "http://127.0.0.1:8765/csv",
+      "timeout": 5
+    },
+    {
+      "name": "rest",
+      "type": "rest",
+      "url": "http://127.0.0.1:8765/rest",
+      "timeout": 5
+    },
+    {
+      "name": "graphql",
+      "type": "graphql",
+      "url": "http://127.0.0.1:8765/graphql",
+      "query": "{ readings { timestamp value unit } }",
+      "timeout": 5
+    },
+    {
+      "name": "file",
+      "type": "file",
+      "path": "./sample_file.json",
+      "timeout": 5
+    }
+  ]
+}
