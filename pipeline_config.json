@@ -1,0 +1,89 @@
+{
+  "pipeline": {
+    "timeout": 15.0,
+    "output_path": "pipeline_output.json",
+    "sort_by": "timestamp",
+    "incremental": {
+      "enabled": true,
+      "state_file": ".pipeline_state.json"
+    }
+  },
+  "sources": [
+    {
+      "name": "crypto_rest_api",
+      "type": "rest",
+      "url": "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd",
+      "timeout": 10.0,
+      "headers": {
+        "Accept": "application/json"
+      },
+      "field_mapping": {
+        "value": "usd",
+        "unit": "currency"
+      }
+    },
+    {
+      "name": "market_csv",
+      "type": "csv",
+      "url": "https://example.com/data/prices.csv",
+      "timeout": 10.0,
+      "field_mapping": {
+        "timestamp": "date",
+        "value": "close_price",
+        "unit": "currency"
+      }
+    },
+    {
+      "name": "local_csv_data",
+      "type": "csv",
+      "path": "./data/local_prices.csv",
+      "timeout": 5.0
+    },
+    {
+      "name": "live_websocket_feed",
+      "type": "websocket",
+      "url": "wss://stream.example.com/prices",
+      "timeout": 30.0,
+      "max_messages": 100,
+      "field_mapping": {
+        "timestamp": "ts",
+        "value": "price"
+      }
+    },
+    {
+      "name": "graphql_endpoint",
+      "type": "graphql",
+      "url": "https://api.example.com/graphql",
+      "query": "query { prices(limit: 100) { id timestamp value currency } }",
+      "timeout": 10.0,
+      "headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer ${API_TOKEN}"
+      },
+      "field_mapping": {
+        "value": "value",
+        "unit": "currency"
+      }
+    },
+    {
+      "name": "local_json_file",
+      "type": "file",
+      "path": "./latest_scan.json",
+      "timeout": 5.0
+    }
+  ],
+  "schema": {
+    "normalized_record": {
+      "source": "string (source name)",
+      "timestamp": "string (ISO 8601)",
+      "value": "any (numeric or object)",
+      "unit": "string (optional)",
+      "metadata": "object (optional, extra fields)"
+    }
+  },
+  "output": {
+    "format": "json",
+    "include_stats": true,
+    "pretty_print": true
+  }
+}
