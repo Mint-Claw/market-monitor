@@ -1,0 +1,55 @@
+{
+  "pipeline": {
+    "name": "market_monitor",
+    "output_dir": "output",
+    "output_file": "aggregated.json",
+    "timeout_seconds": 15
+  },
+  "sources": [
+    {
+      "name": "rest_photos",
+      "type": "rest",
+      "enabled": true,
+      "url": "https://jsonplaceholder.typicode.com/photos",
+      "method": "GET",
+      "params": {},
+      "unit": "record",
+      "max_records": 500
+    },
+    {
+      "name": "csv_covid19",
+      "type": "csv",
+      "enabled": true,
+      "url": "https://raw.githubusercontent.com/datasets/covid-19/main/data/countries-aggregated.csv",
+      "unit": "row",
+      "max_records": 500
+    },
+    {
+      "name": "ws_binance_btcusdt",
+      "type": "websocket",
+      "enabled": true,
+      "url": "wss://stream.binance.com:9443/ws/btcusdt@trade",
+      "unit": "trade",
+      "max_records": 50,
+      "connect_timeout_seconds": 8,
+      "recv_timeout_seconds": 3
+    },
+    {
+      "name": "graphql_countries",
+      "type": "graphql",
+      "enabled": true,
+      "url": "https://countries.trevorblades.com/graphql",
+      "query": "{ countries { code name emoji continent { name } languages { name } } }",
+      "data_path": "countries",
+      "unit": "record"
+    },
+    {
+      "name": "file_crypto_sample",
+      "type": "file",
+      "enabled": true,
+      "path": "data/sample_data.json",
+      "unit": "record",
+      "max_records": 500
+    }
+  ]
+}
