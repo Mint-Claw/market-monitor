@@ -1,0 +1,61 @@
+{
+  "pipeline": {
+    "name": "market_monitor",
+    "output_dir": "output",
+    "output_file": "aggregated.json",
+    "timeout_seconds": 45
+  },
+  "sources": [
+    {
+      "name": "rest_photos",
+      "type": "rest",
+      "enabled": true,
+      "url": "https://jsonplaceholder.typicode.com/photos",
+      "method": "GET",
+      "params": {},
+      "unit": "record",
+      "max_records": 1500
+    },
+    {
+      "name": "csv_covid19",
+      "type": "csv",
+      "enabled": true,
+      "url": "https://raw.githubusercontent.com/datasets/covid-19/main/data/countries-aggregated.csv",
+      "unit": "row",
+      "max_records": 1500
+    },
+    {
+      "name": "ws_binance_btcusdt",
+      "type": "websocket",
+      "enabled": true,
+      "url": "wss://stream.binance.com:9443/ws/btcusdt@trade",
+      "unit": "trade",
+      "max_records": 150,
+      "connect_timeout_seconds": 10,
+      "recv_timeout_seconds": 5
+    },
+    {
+      "name": "graphql_rickmorty",
+      "type": "graphql",
+      "enabled": true,
+      "url": "https://rickandmortyapi.com/graphql",
+      "query": "query ($page: Int) { characters(page: $page) { info { next } results { id name status species type gender origin { name } location { name } } } }",
+      "data_path": "characters",
+      "unit": "character",
+      "max_records": 826,
+      "paginate": {
+        "enabled": true,
+        "page_var": "page",
+        "max_pages": 42
+      }
+    },
+    {
+      "name": "file_crypto_sample",
+      "type": "file",
+      "enabled": true,
+      "path": "data/sample_data.json",
+      "unit": "record",
+      "max_records": 1500
+    }
+  ]
+}
