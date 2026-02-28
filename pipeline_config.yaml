@@ -1,0 +1,77 @@
+# Multi-Source Data Aggregation Pipeline Configuration
+# Each source defines: type, endpoint, field mapping, and fetch options
+
+pipeline:
+  name: market-monitor-aggregator
+  version: "1.0.0"
+  output_file: output/aggregated.json
+  stats_file: output/stats.json
+  max_concurrent: 10
+  default_timeout_s: 10
+  incremental: false  # set true for incremental updates
+  state_file: output/.pipeline_state.json
+
+sources:
+  - id: rest_crypto
+    type: rest
+    url: "http://localhost:8099/api/prices"
+    method: GET
+    headers:
+      Accept: application/json
+    field_map:
+      source: "'rest_crypto'"
+      timestamp: "timestamp"
+      value: "price"
+      unit: "currency"
+    timeout_s: 10
+
+  - id: csv_historical
+    type: csv
+    path: "data/historical.csv"
+    field_map:
+      source: "'csv_historical'"
+      timestamp: "date"
+      value: "close"
+      unit: "'USD'"
+    encoding: utf-8
+
+  - id: ws_live
+    type: websocket
+    url: "ws://localhost:8099/ws/prices"
+    max_messages: 50
+    field_map:
+      source: "'ws_live'"
+      timestamp: "ts"
+      value: "price"
+      unit: "pair"
+    timeout_s: 5
+
+  - id: graphql_market
+    type: graphql
+    url: "http://localhost:8099/graphql"
+    query: |
+      {
+        markets {
+          symbol
+          lastPrice
+          updatedAt
+          quoteCurrency
+        }
+      }
+    items_path: "data.markets"
+    field_map:
+      source: "'graphql_market'"
+      timestamp: "updatedAt"
+      value: "lastPrice"
+      unit: "quoteCurrency"
+    timeout_s: 10
+
+  - id: file_snapshot
+    type: file
+    path: "data/snapshot.json"
+    items_path: "records"
+    field_map:
+      source: "'file_snapshot'"
+      timestamp: "recorded_at"
+      value: "amount"
+      unit: "denomination"

@@ -1,0 +1,16 @@
+{
+  "snapshot_id": "snap-20260228-001",
+  "taken_at": "2026-02-28T01:00:00Z",
+  "records": [
+    {"asset": "BTC", "amount": 64950.50, "denomination": "USD", "recorded_at": "2026-02-28T01:00:00Z"},
+    {"asset": "ETH", "amount": 1895.25, "denomination": "USD", "recorded_at": "2026-02-28T01:00:01Z"},
+    {"asset": "SOL", "amount": 139.80, "denomination": "USD", "recorded_at": "2026-02-28T01:00:02Z"},
+    {"asset": "AVAX", "amount": 34.75, "denomination": "USD", "recorded_at": "2026-02-28T01:00:03Z"},
+    {"asset": "MATIC", "amount": 0.84, "denomination": "USD", "recorded_at": "2026-02-28T01:00:04Z"},
+    {"asset": "BTC", "amount": 64980.00, "denomination": "USD", "recorded_at": "2026-02-28T01:05:00Z"},
+    {"asset": "ETH", "amount": 1898.50, "denomination": "USD", "recorded_at": "2026-02-28T01:05:01Z"},
+    {"asset": "SOL", "amount": 140.20, "denomination": "USD", "recorded_at": "2026-02-28T01:05:02Z"},
+    {"asset": "AVAX", "amount": 35.10, "denomination": "USD", "recorded_at": "2026-02-28T01:05:03Z"},
+    {"asset": "MATIC", "amount": 0.855, "denomination": "USD", "recorded_at": "2026-02-28T01:05:04Z"}
+  ]
+}
