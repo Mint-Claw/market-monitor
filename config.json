@@ -1,0 +1,29 @@
+{
+      "sources": [
+                {
+                              "name": "CryptoWatch",
+                              "type": "rest",
+                              "url": "https://api.cryptowat.ch/markets/binance/btcusdt/price",
+                              "mapping": {"value": "result.price", "unit": "USD"}
+                },
+                {
+                              "name": "Bitfinex-WS",
+                              "type": "websocket",
+                              "url": "wss://api-pub.bitfinex.com/ws/2",
+                              "mapping": {"value": "data", "unit": "USD"}
+                },
+                {
+                              "name": "Price-Oracle-GraphQL",
+                              "type": "graphql",
+                              "url": "https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v2",
+                              "mapping": {"value": "value", "unit": "USD"}
+                },
+                {
+                              "name": "Local-Sensor-Data",
+                              "type": "file",
+                              "url": "local://data.csv",
+                              "mapping": {"value": "value", "unit": "Celsius"}
+                }
+      ],
+      "output": "aggregated_data.json"
+}
