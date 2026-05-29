@@ -1,0 +1,48 @@
+{
+  "pipeline_timeout": 15,
+  "sources": [
+    {
+      "name": "rest-api",
+      "type": "rest",
+      "url": "https://api.example.com/data",
+      "timeout": 5,
+      "headers": {
+        "Authorization": "Bearer token123"
+      },
+      "params": {
+        "limit": 100
+      }
+    },
+    {
+      "name": "csv-file",
+      "type": "csv",
+      "path": "data/market_data.csv",
+      "timestamp_col": "date",
+      "value_col": "price",
+      "unit_col": "currency"
+    },
+    {
+      "name": "websocket-feed",
+      "type": "websocket",
+      "url": "wss://ws.example.com/feed",
+      "timeout": 5,
+      "max_messages": 50,
+      "message": {
+        "subscribe": "prices"
+      }
+    },
+    {
+      "name": "graphql-api",
+      "type": "graphql",
+      "url": "https://api.example.com/graphql",
+      "timeout": 5,
+      "query": "{ items { timestamp value unit } }",
+      "variables": {}
+    },
+    {
+      "name": "local-json",
+      "type": "file",
+      "path": "data/historical.json"
+    }
+  ]
+}
