@@ -1,0 +1,1802 @@
+[
+  {
+    "timestamp": "2026-05-29T05:38:20.360294+00:00",
+    "value": 86100.3,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:37:50.360294+00:00",
+    "value": 41582.53,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:37:20.360294+00:00",
+    "value": 36486.76,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:36:50.360294+00:00",
+    "value": 22796.43,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:36:20.360294+00:00",
+    "value": 12843.28,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:35:50.360294+00:00",
+    "value": 44750.65,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:35:20.360294+00:00",
+    "value": 94627.83,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:34:50.360294+00:00",
+    "value": 66433.18,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:34:20.360294+00:00",
+    "value": 16907.85,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:33:50.360294+00:00",
+    "value": 11630.83,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:33:20.360294+00:00",
+    "value": 39894.5,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:32:50.360294+00:00",
+    "value": 1088.49,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:32:20.360294+00:00",
+    "value": 18351.79,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:31:50.360294+00:00",
+    "value": 63046.42,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:31:20.360294+00:00",
+    "value": 19642.4,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:30:50.360294+00:00",
+    "value": 62671.44,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:30:20.360294+00:00",
+    "value": 78593.57,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:29:50.360294+00:00",
+    "value": 80749.69,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:29:20.360294+00:00",
+    "value": 24154.0,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:28:50.360294+00:00",
+    "value": 63314.53,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:28:20.360294+00:00",
+    "value": 72120.0,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:27:50.360294+00:00",
+    "value": 25835.36,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:27:20.360294+00:00",
+    "value": 74058.57,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:26:50.360294+00:00",
+    "value": 30201.03,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:26:20.360294+00:00",
+    "value": 38339.41,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:25:50.360294+00:00",
+    "value": 53507.97,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:25:20.360294+00:00",
+    "value": 53590.48,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:24:50.360294+00:00",
+    "value": 59275.25,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:24:20.360294+00:00",
+    "value": 89918.29,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:23:50.360294+00:00",
+    "value": 63863.69,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:23:20.360294+00:00",
+    "value": 85949.53,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:22:50.360294+00:00",
+    "value": 86113.1,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:22:20.360294+00:00",
+    "value": 64265.2,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:21:50.360294+00:00",
+    "value": 86224.84,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:21:20.360294+00:00",
+    "value": 8815.14,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:20:50.360294+00:00",
+    "value": 91467.16,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:20:20.360294+00:00",
+    "value": 75382.03,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:19:50.360294+00:00",
+    "value": 31742.47,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:19:20.360294+00:00",
+    "value": 82727.1,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:18:50.360294+00:00",
+    "value": 35941.2,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:18:20.360294+00:00",
+    "value": 41722.37,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:17:50.360294+00:00",
+    "value": 88189.36,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:17:20.360294+00:00",
+    "value": 79671.88,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:16:50.360294+00:00",
+    "value": 37664.46,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:16:20.360294+00:00",
+    "value": 93604.09,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:15:50.360294+00:00",
+    "value": 11141.12,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:15:20.360294+00:00",
+    "value": 37988.32,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:14:50.360294+00:00",
+    "value": 24791.61,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:14:20.360294+00:00",
+    "value": 75372.99,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:13:50.360294+00:00",
+    "value": 25536.25,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:13:20.360294+00:00",
+    "value": 1893.9,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:12:50.360294+00:00",
+    "value": 71095.62,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:12:20.360294+00:00",
+    "value": 45039.54,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:11:50.360294+00:00",
+    "value": 9434.31,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:11:20.360294+00:00",
+    "value": 53996.67,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:10:50.360294+00:00",
+    "value": 61232.55,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:10:20.360294+00:00",
+    "value": 12519.74,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:09:50.360294+00:00",
+    "value": 44242.6,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:09:20.360294+00:00",
+    "value": 53185.25,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:08:50.360294+00:00",
+    "value": 65328.55,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:08:20.360294+00:00",
+    "value": 21627.5,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:07:50.360294+00:00",
+    "value": 79111.74,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:07:20.360294+00:00",
+    "value": 37391.49,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:06:50.360294+00:00",
+    "value": 66854.09,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:06:20.360294+00:00",
+    "value": 58246.91,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:05:50.360294+00:00",
+    "value": 99130.41,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:05:20.360294+00:00",
+    "value": 45675.19,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:04:50.360294+00:00",
+    "value": 13629.21,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:04:20.360294+00:00",
+    "value": 12009.45,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:03:50.360294+00:00",
+    "value": 91862.58,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:03:20.360294+00:00",
+    "value": 23923.71,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:02:50.360294+00:00",
+    "value": 73193.19,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:02:20.360294+00:00",
+    "value": 68924.39,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:01:50.360294+00:00",
+    "value": 45429.22,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:01:20.360294+00:00",
+    "value": 64307.19,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:00:50.360294+00:00",
+    "value": 79573.57,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T05:00:20.360294+00:00",
+    "value": 77412.83,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:59:50.360294+00:00",
+    "value": 11115.31,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:59:20.360294+00:00",
+    "value": 72265.74,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:58:50.360294+00:00",
+    "value": 40127.61,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:58:20.360294+00:00",
+    "value": 27396.86,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:57:50.360294+00:00",
+    "value": 203.99,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:57:20.360294+00:00",
+    "value": 94627.7,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:56:50.360294+00:00",
+    "value": 46530.89,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:56:20.360294+00:00",
+    "value": 56484.68,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:55:50.360294+00:00",
+    "value": 6633.66,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:55:20.360294+00:00",
+    "value": 32461.1,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:54:50.360294+00:00",
+    "value": 82147.57,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:54:20.360294+00:00",
+    "value": 4342.11,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:53:50.360294+00:00",
+    "value": 83411.62,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:53:20.360294+00:00",
+    "value": 39379.58,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:52:50.360294+00:00",
+    "value": 60756.79,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:52:20.360294+00:00",
+    "value": 74025.52,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:51:50.360294+00:00",
+    "value": 87499.32,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:51:20.360294+00:00",
+    "value": 9249.34,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:50:50.360294+00:00",
+    "value": 24546.06,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:50:20.360294+00:00",
+    "value": 80131.79,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:49:50.360294+00:00",
+    "value": 79180.59,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:49:20.360294+00:00",
+    "value": 10113.51,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:48:50.360294+00:00",
+    "value": 95808.61,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:48:20.360294+00:00",
+    "value": 24817.75,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:47:50.360294+00:00",
+    "value": 7263.17,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:47:20.360294+00:00",
+    "value": 80750.81,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:46:50.360294+00:00",
+    "value": 11458.13,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:46:20.360294+00:00",
+    "value": 75746.87,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:45:50.360294+00:00",
+    "value": 75374.63,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:45:20.360294+00:00",
+    "value": 71360.5,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:44:50.360294+00:00",
+    "value": 40875.92,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:44:20.360294+00:00",
+    "value": 70051.68,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:43:50.360294+00:00",
+    "value": 54555.92,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:43:20.360294+00:00",
+    "value": 36732.71,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:42:50.360294+00:00",
+    "value": 35688.8,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:42:20.360294+00:00",
+    "value": 78663.31,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:41:50.360294+00:00",
+    "value": 34649.84,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:41:20.360294+00:00",
+    "value": 82368.46,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:40:50.360294+00:00",
+    "value": 6111.35,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:40:20.360294+00:00",
+    "value": 61715.56,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:39:50.360294+00:00",
+    "value": 48221.28,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:39:20.360294+00:00",
+    "value": 58887.27,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:38:50.360294+00:00",
+    "value": 12182.24,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:38:20.360294+00:00",
+    "value": 81308.43,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:37:50.360294+00:00",
+    "value": 11242.08,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:37:20.360294+00:00",
+    "value": 12422.72,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:36:50.360294+00:00",
+    "value": 55653.19,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:36:20.360294+00:00",
+    "value": 64018.3,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:35:50.360294+00:00",
+    "value": 6150.95,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:35:20.360294+00:00",
+    "value": 18931.39,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:34:50.360294+00:00",
+    "value": 44185.51,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:34:20.360294+00:00",
+    "value": 51748.72,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:33:50.360294+00:00",
+    "value": 41273.31,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:33:20.360294+00:00",
+    "value": 44483.17,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:32:50.360294+00:00",
+    "value": 72518.8,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:32:20.360294+00:00",
+    "value": 94493.5,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:31:50.360294+00:00",
+    "value": 26824.42,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:31:20.360294+00:00",
+    "value": 96187.54,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:30:50.360294+00:00",
+    "value": 81298.95,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:30:20.360294+00:00",
+    "value": 68607.93,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:29:50.360294+00:00",
+    "value": 50629.32,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:29:20.360294+00:00",
+    "value": 80571.91,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:28:50.360294+00:00",
+    "value": 48744.26,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:28:20.360294+00:00",
+    "value": 5830.79,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:27:50.360294+00:00",
+    "value": 34938.6,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:27:20.360294+00:00",
+    "value": 13084.14,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:26:50.360294+00:00",
+    "value": 49635.63,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:26:20.360294+00:00",
+    "value": 49652.11,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:25:50.360294+00:00",
+    "value": 28561.94,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:25:20.360294+00:00",
+    "value": 4049.06,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:24:50.360294+00:00",
+    "value": 42236.11,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:24:20.360294+00:00",
+    "value": 67938.9,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:23:50.360294+00:00",
+    "value": 13018.7,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:23:20.360294+00:00",
+    "value": 3991.8,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:22:50.360294+00:00",
+    "value": 82513.37,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:22:20.360294+00:00",
+    "value": 10807.5,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:21:50.360294+00:00",
+    "value": 89937.53,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:21:20.360294+00:00",
+    "value": 78970.83,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:20:50.360294+00:00",
+    "value": 5883.86,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:20:20.360294+00:00",
+    "value": 80617.3,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:19:50.360294+00:00",
+    "value": 14323.1,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:19:20.360294+00:00",
+    "value": 43296.08,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:18:50.360294+00:00",
+    "value": 23922.92,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:18:20.360294+00:00",
+    "value": 56385.18,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:17:50.360294+00:00",
+    "value": 75007.78,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:17:20.360294+00:00",
+    "value": 71163.03,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:16:50.360294+00:00",
+    "value": 19214.34,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:16:20.360294+00:00",
+    "value": 76702.15,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:15:50.360294+00:00",
+    "value": 62153.24,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:15:20.360294+00:00",
+    "value": 46239.72,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:14:50.360294+00:00",
+    "value": 34300.53,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:14:20.360294+00:00",
+    "value": 85777.85,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:13:50.360294+00:00",
+    "value": 17270.55,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:13:20.360294+00:00",
+    "value": 80831.44,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:12:50.360294+00:00",
+    "value": 53070.65,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:12:20.360294+00:00",
+    "value": 28334.17,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:11:50.360294+00:00",
+    "value": 75760.41,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:11:20.360294+00:00",
+    "value": 35969.06,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:10:50.360294+00:00",
+    "value": 89580.71,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:10:20.360294+00:00",
+    "value": 19712.58,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:09:50.360294+00:00",
+    "value": 68018.79,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:09:20.360294+00:00",
+    "value": 30984.6,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:08:50.360294+00:00",
+    "value": 82696.63,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:08:20.360294+00:00",
+    "value": 35093.8,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:07:50.360294+00:00",
+    "value": 22286.11,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:07:20.360294+00:00",
+    "value": 76096.92,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:06:50.360294+00:00",
+    "value": 74381.1,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:06:20.360294+00:00",
+    "value": 71337.33,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:05:50.360294+00:00",
+    "value": 64049.54,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:05:20.360294+00:00",
+    "value": 73506.75,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:04:50.360294+00:00",
+    "value": 68759.05,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:04:20.360294+00:00",
+    "value": 99469.68,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:03:50.360294+00:00",
+    "value": 44965.98,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:03:20.360294+00:00",
+    "value": 66991.77,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:02:50.360294+00:00",
+    "value": 15166.03,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:02:20.360294+00:00",
+    "value": 98936.22,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:01:50.360294+00:00",
+    "value": 34717.66,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:01:20.360294+00:00",
+    "value": 92489.37,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:00:50.360294+00:00",
+    "value": 77113.68,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T04:00:20.360294+00:00",
+    "value": 12997.25,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:59:50.360294+00:00",
+    "value": 91440.82,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:59:20.360294+00:00",
+    "value": 10401.05,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:58:50.360294+00:00",
+    "value": 33106.63,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:58:20.360294+00:00",
+    "value": 79475.61,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:57:50.360294+00:00",
+    "value": 21328.14,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:57:20.360294+00:00",
+    "value": 31607.33,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:56:50.360294+00:00",
+    "value": 22340.38,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:56:20.360294+00:00",
+    "value": 88680.11,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:55:50.360294+00:00",
+    "value": 43185.92,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:55:20.360294+00:00",
+    "value": 6115.12,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:54:50.360294+00:00",
+    "value": 68350.39,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:54:20.360294+00:00",
+    "value": 29613.64,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:53:50.360294+00:00",
+    "value": 53929.9,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:53:20.360294+00:00",
+    "value": 89877.54,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:52:50.360294+00:00",
+    "value": 10307.32,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:52:20.360294+00:00",
+    "value": 75155.15,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:51:50.360294+00:00",
+    "value": 25865.94,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:51:20.360294+00:00",
+    "value": 75130.1,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:50:50.360294+00:00",
+    "value": 20250.18,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:50:20.360294+00:00",
+    "value": 92159.21,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:49:50.360294+00:00",
+    "value": 9439.63,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:49:20.360294+00:00",
+    "value": 87445.46,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:48:50.360294+00:00",
+    "value": 53023.51,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:48:20.360294+00:00",
+    "value": 15448.88,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:47:50.360294+00:00",
+    "value": 44092.45,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:47:20.360294+00:00",
+    "value": 62440.74,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:46:50.360294+00:00",
+    "value": 41197.67,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:46:20.360294+00:00",
+    "value": 8429.44,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:45:50.360294+00:00",
+    "value": 18969.23,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:45:20.360294+00:00",
+    "value": 49417.33,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:44:50.360294+00:00",
+    "value": 41283.02,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:44:20.360294+00:00",
+    "value": 63895.36,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:43:50.360294+00:00",
+    "value": 58741.28,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:43:20.360294+00:00",
+    "value": 43491.76,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:42:50.360294+00:00",
+    "value": 80112.44,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:42:20.360294+00:00",
+    "value": 33771.32,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:41:50.360294+00:00",
+    "value": 76808.24,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:41:20.360294+00:00",
+    "value": 86847.64,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:40:50.360294+00:00",
+    "value": 92141.48,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:40:20.360294+00:00",
+    "value": 14761.91,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:39:50.360294+00:00",
+    "value": 61590.19,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:39:20.360294+00:00",
+    "value": 94446.17,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:38:50.360294+00:00",
+    "value": 67946.07,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:38:20.360294+00:00",
+    "value": 10359.56,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:37:50.360294+00:00",
+    "value": 7735.1,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:37:20.360294+00:00",
+    "value": 73098.41,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:36:50.360294+00:00",
+    "value": 43048.41,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:36:20.360294+00:00",
+    "value": 17162.99,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:35:50.360294+00:00",
+    "value": 70515.69,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:35:20.360294+00:00",
+    "value": 39898.8,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:34:50.360294+00:00",
+    "value": 97439.35,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:34:20.360294+00:00",
+    "value": 75061.26,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:33:50.360294+00:00",
+    "value": 72777.86,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:33:20.360294+00:00",
+    "value": 95367.4,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:32:50.360294+00:00",
+    "value": 30969.71,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:32:20.360294+00:00",
+    "value": 64339.71,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:31:50.360294+00:00",
+    "value": 54977.23,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:31:20.360294+00:00",
+    "value": 20591.99,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:30:50.360294+00:00",
+    "value": 49353.31,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:30:20.360294+00:00",
+    "value": 66730.83,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:29:50.360294+00:00",
+    "value": 20752.29,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:29:20.360294+00:00",
+    "value": 90767.99,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:28:50.360294+00:00",
+    "value": 97628.44,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:28:20.360294+00:00",
+    "value": 9799.67,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:27:50.360294+00:00",
+    "value": 78719.43,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:27:20.360294+00:00",
+    "value": 17560.34,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:26:50.360294+00:00",
+    "value": 70045.52,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:26:20.360294+00:00",
+    "value": 17604.6,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:25:50.360294+00:00",
+    "value": 44091.89,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:25:20.360294+00:00",
+    "value": 44270.32,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:24:50.360294+00:00",
+    "value": 81978.56,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:24:20.360294+00:00",
+    "value": 6502.42,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:23:50.360294+00:00",
+    "value": 93866.45,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:23:20.360294+00:00",
+    "value": 83458.75,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:22:50.360294+00:00",
+    "value": 37299.6,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:22:20.360294+00:00",
+    "value": 80577.11,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:21:50.360294+00:00",
+    "value": 20905.68,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:21:20.360294+00:00",
+    "value": 55477.82,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:20:50.360294+00:00",
+    "value": 72096.82,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:20:20.360294+00:00",
+    "value": 1206.71,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:19:50.360294+00:00",
+    "value": 91162.08,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:19:20.360294+00:00",
+    "value": 64203.89,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:18:50.360294+00:00",
+    "value": 56768.96,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:18:20.360294+00:00",
+    "value": 29858.46,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:17:50.360294+00:00",
+    "value": 97005.96,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:17:20.360294+00:00",
+    "value": 82202.09,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:16:50.360294+00:00",
+    "value": 75456.57,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:16:20.360294+00:00",
+    "value": 40652.31,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:15:50.360294+00:00",
+    "value": 43451.65,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:15:20.360294+00:00",
+    "value": 44232.01,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:14:50.360294+00:00",
+    "value": 98453.83,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:14:20.360294+00:00",
+    "value": 14693.13,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:13:50.360294+00:00",
+    "value": 29074.19,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:13:20.360294+00:00",
+    "value": 73632.84,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:12:50.360294+00:00",
+    "value": 38745.81,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:12:20.360294+00:00",
+    "value": 18604.01,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:11:50.360294+00:00",
+    "value": 23590.85,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:11:20.360294+00:00",
+    "value": 78713.0,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:10:50.360294+00:00",
+    "value": 61448.35,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:10:20.360294+00:00",
+    "value": 66762.66,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:09:50.360294+00:00",
+    "value": 37901.12,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:09:20.360294+00:00",
+    "value": 48390.4,
+    "unit": "USD",
+    "source": "snapshot"
+  },
+  {
+    "timestamp": "2026-05-29T03:08:50.360294+00:00",
+    "value": 20257.45,
+    "unit": "USD",
+    "source": "snapshot"
+  }
+]

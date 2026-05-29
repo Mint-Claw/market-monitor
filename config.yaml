@@ -1,0 +1,39 @@
+# market-monitor pipeline configuration
+# Config-driven source definitions
+
+pipeline:
+  sources:
+    - name: crypto-prices
+      type: rest
+      endpoint: "http://localhost:8899/api/prices"
+      params:
+        symbol: "BTC,ETH,SOL"
+      timeout: 5.0
+
+    - name: market-data-csv
+      type: csv
+      endpoint: "http://localhost:8899/data/market.csv"
+      timeout: 5.0
+
+    - name: trade-feed
+      type: websocket
+      endpoint: "ws://localhost:8899/ws/trades"
+      timeout: 3.0
+
+    - name: analytics-gql
+      type: graphql
+      endpoint: "http://localhost:8899/graphql"
+      params:
+        query: "{ data(limit: 200) { timestamp value unit } }"
+      timeout: 5.0
+
+    - name: local-snapshot
+      type: file
+      endpoint: "mock_data/snapshot.json"
+      timeout: 2.0
+
+    # CSV file source (local)
+    - name: historical-file
+      type: file
+      endpoint: "mock_data/historical.csv"
+      timeout: 2.0
