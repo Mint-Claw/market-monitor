@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
 Mock Server for Multi-Source Data Aggregation Pipeline.
-Provides mock HTTP endpoints (REST, CSV, GraphQL, Slow, Error)
-and WebSocket streaming server.
+Provides mock HTTP endpoints (REST, CSV, GraphQL, Paginated, Slow, Error)
+and WebSocket streaming server. Also exports `create_app` for aiohttp.web applications.
 """
 
 from __future__ import annotations
@@ -15,6 +15,8 @@ import logging
 from threading import Thread
 import time
 from typing import Any, Dict, List, Optional
+from urllib.parse import parse_qs, urlparse
+
 import websockets
 
 logger = logging.getLogger("mock_server")
@@ -47,12 +49,28 @@ class _MockHTTPHandler(BaseHTTPRequestHandler):
         self.wfile.write(body)
 
     def do_GET(self):  # noqa: N802
-        if self.path in ("/rest", "/api/rest"):
+        parsed_url = urlparse(self.path)
+        path = parsed_url.path
+
+        if path in ("/rest", "/api/rest"):
             body = json.dumps(self.rest_data).encode("utf-8")
             self._write_response(200, "application/json", body)
             return
 
-        if self.path in ("/csv", "/api/csv"):
+        if path in ("/paginated", "/api/paginated"):
+            query_params = parse_qs(parsed_url.query)
+            page = int(query_params.get("page", ["1"])[0])
+            if page == 1:
+                items = [{"timestamp": "2026-02-26T10:00:00Z", "price": 50000.0, "unit": "USD"}]
+            elif page == 2:
+                items = [{"timestamp": "2026-02-26T10:01:00Z", "price": 50050.0, "unit": "USD"}]
+            else:
+                items = []
+            body = json.dumps({"items": items, "page": page}).encode("utf-8")
+            self._write_response(200, "application/json", body)
+            return
+
+        if path in ("/csv", "/api/csv"):
             lines = ["ts,value,unit"]
             for row in self.csv_data:
                 lines.append(f"{row['ts']},{row['value']},{row['unit']}")
@@ -60,20 +78,23 @@ class _MockHTTPHandler(BaseHTTPRequestHandler):
             self._write_response(200, "text/csv", body)
             return
 
-        if self.path in ("/slow", "/api/slow"):
+        if path in ("/slow", "/api/slow"):
             time.sleep(self.slow_delay)
             body = json.dumps([{"timestamp": "2026-02-26T12:00:00Z", "value": 1.0}]).encode("utf-8")
             self._write_response(200, "application/json", body)
             return
 
-        if self.path in ("/error", "/api/error"):
+        if path in ("/error", "/api/error"):
             self._write_response(500, "text/plain", b"Internal Server Error")
             return
 
         self._write_response(404, "text/plain", b"Not Found")
 
     def do_POST(self):  # noqa: N802
-        if self.path in ("/graphql", "/api/graphql"):
+        parsed_url = urlparse(self.path)
+        path = parsed_url.path
+
+        if path in ("/graphql", "/api/graphql"):
             content_length = int(self.headers.get("Content-Length", 0))
             _ = self.rfile.read(content_length)
             resp = {
@@ -117,7 +138,6 @@ class MockDataServer:
         self._ws_loop: Optional[asyncio.AbstractEventLoop] = None
         self._ws_server = None
         self._ws_thread: Optional[Thread] = None
-        self._ws_stop_event = None
 
     def set_data(
         self,
@@ -167,7 +187,7 @@ class MockDataServer:
                 if sockets:
                     self.ws_port = sockets[0].getsockname()[1]
                 ready_event.set()
-                await asyncio.Future()  # run forever
+                await asyncio.Future()
 
             try:
                 self._ws_loop.run_until_complete(main_ws())
@@ -210,6 +230,10 @@ class MockDataServer:
         return f"http://{self.http_host}:{self.http_port}/graphql"
 
     @property
+    def paginated_url(self) -> str:
+        return f"http://{self.http_host}:{self.http_port}/paginated"
+
+    @property
     def slow_url(self) -> str:
         return f"http://{self.http_host}:{self.http_port}/slow"
 
@@ -222,6 +246,59 @@ class MockDataServer:
         return f"ws://{self.ws_host}:{self.ws_port}/ws"
 
 
+def create_app():
+    """Create aiohttp web application for test suites using aiohttp web fixtures."""
+    from aiohttp import web
+
+    async def handle_rest(request):
+        data = {
+            "items": [
+                {"timestamp": "2026-02-26T10:00:00Z", "price": 50100.5, "unit": "USD", "extra": "A"},
+                {"timestamp": "2026-02-26T10:05:00Z", "price": 50250.0, "unit": "USD", "extra": "B"},
+            ]
+        }
+        return web.json_response(data)
+
+    async def handle_graphql(request):
+        data = {
+            "data": {
+                "marketData": [
+                    {"time": "2026-02-26T08:15:00Z", "amount": 105.4, "currency": "ETH"}
+                ]
+            }
+        }
+        return web.json_response(data)
+
+    async def handle_csv(request):
+        text = "ts,value,unit\n2026-02-26T09:00:00Z,49950.0,USD\n2026-02-26T09:30:00Z,50020.5,USD"
+        return web.Response(text=text, content_type="text/csv")
+
+    async def handle_websocket(request):
+        ws = web.WebSocketResponse()
+        await ws.prepare(request)
+        data = {"timestamp": "2026-02-26T11:00:00Z", "value": 50300.0, "unit": "USD"}
+        await ws.send_json(data)
+        await ws.close()
+        return ws
+
+    async def handle_slow(request):
+        await asyncio.sleep(2.0)
+        return web.json_response([{"timestamp": "2026-02-26T12:00:00Z", "value": 1.0}])
+
+    async def handle_error(request):
+        return web.Response(status=500, text="Internal Server Error")
+
+    app = web.Application()
+    for prefix in ("", "/api"):
+        app.router.add_get(f"{prefix}/rest", handle_rest)
+        app.router.add_post(f"{prefix}/graphql", handle_graphql)
+        app.router.add_get(f"{prefix}/csv", handle_csv)
+        app.router.add_get(f"{prefix}/ws", handle_websocket)
+        app.router.add_get(f"{prefix}/slow", handle_slow)
+        app.router.add_get(f"{prefix}/error", handle_error)
+    return app
+
+
 def main():
     parser = argparse.ArgumentParser(description="Mock Server for Data Pipeline Testing")
     parser.add_argument("--http-port", type=int, default=8080, help="HTTP server port")
@@ -231,9 +308,10 @@ def main():
     server = MockDataServer(http_port=args.http_port, ws_port=args.ws_port)
     server.start()
     print(f"Mock HTTP Server running at http://127.0.0.1:{server.http_port}")
-    print(f"  REST:    {server.rest_url}")
-    print(f"  CSV:     {server.csv_url}")
-    print(f"  GraphQL: {server.graphql_url}")
+    print(f"  REST:      {server.rest_url}")
+    print(f"  CSV:       {server.csv_url}")
+    print(f"  GraphQL:   {server.graphql_url}")
+    print(f"  Paginated: {server.paginated_url}")
     print(f"Mock WebSocket Server running at {server.ws_url}")
     print("Press Ctrl+C to stop.")
     try:

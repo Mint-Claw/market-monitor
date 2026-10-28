@@ -19,6 +19,7 @@ import logging
 from pathlib import Path
 import time
 from typing import Any, Dict, List, Optional, Union
+from abc import ABC, abstractmethod
 
 import aiohttp
 import websockets
@@ -27,7 +28,7 @@ logger = logging.getLogger("data_pipeline")
 
 
 def normalize_timestamp(val: Any) -> str:
-    """Normalize any timestamp (unix seconds, ms, us, ns, ISO 8601 string, datetime) to UTC ISO 8601 string."""
+    """Normalize any timestamp (unix seconds, unix ms, ISO 8601 string, datetime) to UTC ISO 8601 string."""
     if val is None or val == "":
         raise ValueError("Timestamp cannot be None or empty")
 
@@ -41,18 +42,9 @@ def normalize_timestamp(val: Any) -> str:
 
     # Numeric unix timestamp
     if isinstance(val, (int, float)):
-        # Check scale:
-        # > 1e16 -> nanoseconds (e.g. 1.7e18)
-        # > 1e13 -> microseconds (e.g. 1.7e15)
-        # > 1e11 -> milliseconds (e.g. 1.7e12)
-        # <= 1e11 -> seconds (e.g. 1.7e9)
-        if val > 1e16:
-            val = val / 1e9
-        elif val > 1e13:
-            val = val / 1e6
-        elif val > 1e11:
+        # Milliseconds check (e.g., > 1e11 is after 1973 in ms)
+        if val > 1e11:
             val = val / 1000.0
-
         dt = datetime.fromtimestamp(val, tz=timezone.utc)
         return dt.strftime("%Y-%m-%dT%H:%M:%SZ")
 
@@ -85,45 +77,50 @@ def normalize_value(val: Any) -> Any:
     """Convert value to int, float, or preserved string."""
     if val is None or val == "":
         return 0.0
-    if isinstance(val, bool):
-        return val
     if isinstance(val, (int, float)):
         return val
     if isinstance(val, str):
         val_str = val.strip().replace(",", "")
-        val_clean = val_str.lstrip("$€£¥ ")
         try:
-            if "." in val_clean or "e" in val_clean.lower():
-                return float(val_clean)
-            return int(val_clean)
+            if "." in val_str or "e" in val_str.lower():
+                return float(val_str)
+            return int(val_str)
         except ValueError:
             return val_str
     return val
 
 
-def _extract_field_value(record: Dict[str, Any], field_path: Optional[str]) -> Any:
-    """Retrieve field value supporting dot notation (e.g. 'quote.price' or 'meta.ts')."""
-    if not field_path:
-        return None
-    if field_path in record:
-        return record[field_path]
-    if "." in field_path:
-        current = record
-        for part in field_path.split("."):
-            if isinstance(current, dict) and part in current:
-                current = current[part]
-            elif isinstance(current, list) and part.isdigit() and int(part) < len(current):
-                current = current[int(part)]
-            else:
-                return None
-        return current
-    return None
+class DataSource(ABC):
+    def __init__(self, name: str, config: Dict[str, Any]):
+        self.name = name
+        self.config = config
+        self.mapping = config.get("mapping", {})
+        self.timeout = float(config.get("timeout", 5.0))
+
+    @abstractmethod
+    async def fetch(self) -> List[Dict[str, Any]]:
+        pass
+
+
+class DataNormalizer:
+    @staticmethod
+    def normalize(
+        record: Dict[str, Any],
+        mapping: Optional[Dict[str, Any]] = None,
+        source_name: str = "default",
+        default_unit: Optional[str] = None,
+    ) -> Optional[Dict[str, Any]]:
+        pipeline = DataPipeline(config=[])
+        try:
+            return pipeline._normalize_record(source_name, record, mapping, default_unit)
+        except Exception:
+            return None
 
 
 class DataPipeline:
     def __init__(
         self,
-        config: Union[Dict[str, Any], str, Path],
+        config: Union[Dict[str, Any], List[Dict[str, Any]], str, Path],
         incremental_store: Optional[str] = None,
         timeout: float = 10.0,
         max_retries: int = 2,
@@ -131,14 +128,24 @@ class DataPipeline:
     ):
         if isinstance(config, (str, Path)):
             with open(config, "r", encoding="utf-8") as f:
-                self.config = json.load(f)
+                loaded = json.load(f)
+                if isinstance(loaded, list):
+                    self.config = {"sources": loaded}
+                else:
+                    self.config = loaded
+        elif isinstance(config, list):
+            self.config = {"sources": config}
         else:
-            self.config = config
+            self.config = config or {}
 
+        self.sources = self.config.get("sources", [])
         self.global_timeout = float(self.config.get("timeout", timeout))
         self.output_path = self.config.get("output") or self.config.get("output_path")
         self.max_retries = int(self.config.get("max_retries", max_retries))
         self.retry_backoff = float(self.config.get("retry_backoff", retry_backoff))
+
+        # In-memory tracking for incremental fetch
+        self.last_fetch_time: Dict[str, str] = {}
 
         # Incremental store path
         store_path = incremental_store or self.config.get("incremental_store") or self.config.get("state_file")
@@ -197,7 +204,7 @@ class DataPipeline:
         self,
         source_name: str,
         record: Dict[str, Any],
-        mapping: Optional[Dict[str, str]],
+        mapping: Optional[Dict[str, Any]],
         default_unit: Optional[str],
     ) -> Dict[str, Any]:
         """Strictly normalize a single record to {source, timestamp, value, unit}."""
@@ -223,7 +230,7 @@ class DataPipeline:
         if val_field and val_field in record:
             raw_val = record[val_field]
         else:
-            for candidate in ("value", "val", "price", "amount", "count", "close", "v"):
+            for candidate in ("value", "val", "price", "amount", "count", "close", "v", "p"):
                 if candidate in record:
                     raw_val = record[candidate]
                     break
@@ -235,18 +242,35 @@ class DataPipeline:
         if unit_field and unit_field in record:
             raw_unit = record[unit_field]
         else:
-            for candidate in ("unit", "currency", "metric", "u"):
+            for candidate in ("unit", "currency", "metric", "u", "symbol", "coin", "c"):
                 if candidate in record:
                     raw_unit = record[candidate]
                     break
-        norm_unit = str(raw_unit or default_unit or "USD")
+        norm_unit = str(raw_unit if raw_unit is not None else (default_unit or "USD"))
 
-        return {
+        result: Dict[str, Any] = {
             "source": str(source_name),
             "timestamp": norm_ts,
             "value": norm_val,
             "unit": norm_unit,
         }
+
+        # Custom field mapping (Bonus Feature)
+        if "custom" in field_map and isinstance(field_map["custom"], dict):
+            for out_k, in_k in field_map["custom"].items():
+                if in_k in record:
+                    result[out_k] = record[in_k]
+
+        # Support direct custom keys in field_map
+        for map_k, map_v in field_map.items():
+            if (
+                map_k not in ("timestamp", "value", "unit", "custom")
+                and isinstance(map_v, str)
+                and map_v in record
+            ):
+                result[map_k] = record[map_v]
+
+        return result
 
     def _source_timeout(self, source: Dict[str, Any]) -> float:
         return float(source.get("timeout", self.global_timeout))
@@ -254,17 +278,48 @@ class DataPipeline:
     async def _fetch_rest(self, source: Dict[str, Any]) -> List[Dict[str, Any]]:
         timeout_sec = self._source_timeout(source)
         headers = source.get("headers", {})
-        params = source.get("params")
+        base_params = dict(source.get("params") or {})
         url = source["url"]
         data_path = source.get("data_path")
+        pagination = source.get("pagination")
 
         last_error: Optional[Exception] = None
         timeout = aiohttp.ClientTimeout(total=timeout_sec)
 
+        # Support paginated REST fetching
+        if pagination and isinstance(pagination, dict):
+            page_param = pagination.get("page_param", "page")
+            start_page = int(pagination.get("start_page", 1))
+            max_pages = int(pagination.get("max_pages", 5))
+            all_items: List[Dict[str, Any]] = []
+
+            async with aiohttp.ClientSession(timeout=timeout) as session:
+                for page in range(start_page, start_page + max_pages):
+                    params = dict(base_params)
+                    params[page_param] = page
+                    for attempt in range(self.max_retries + 1):
+                        try:
+                            async with session.get(url, headers=headers, params=params) as resp:
+                                resp.raise_for_status()
+                                payload = await resp.json()
+                                extracted = self._extract_path(payload, data_path)
+                                if not extracted:
+                                    return all_items
+                                all_items.extend(extracted)
+                                break
+                        except (aiohttp.ClientError, asyncio.TimeoutError, OSError) as exc:
+                            last_error = exc
+                            if attempt == self.max_retries:
+                                if not all_items:
+                                    raise
+                                return all_items
+                            await asyncio.sleep(self.retry_backoff * (attempt + 1))
+            return all_items
+
         for attempt in range(self.max_retries + 1):
             try:
                 async with aiohttp.ClientSession(timeout=timeout) as session:
-                    async with session.get(url, headers=headers, params=params) as resp:
+                    async with session.get(url, headers=headers, params=base_params) as resp:
                         resp.raise_for_status()
                         payload = await resp.json()
                         return self._extract_path(payload, data_path)
@@ -301,12 +356,15 @@ class DataPipeline:
                 raise last_error
         elif source.get("path"):
             path = Path(source["path"])
-            content = path.read_text(encoding="utf-8")
+            content = await asyncio.to_thread(path.read_text, encoding="utf-8")
         else:
             raise ValueError("CSV source requires 'url' or 'path'")
 
-        reader = csv.DictReader(StringIO(content), delimiter=delimiter)
-        return [dict(row) for row in reader]
+        def _parse_csv():
+            reader = csv.DictReader(StringIO(content), delimiter=delimiter)
+            return [dict(row) for row in reader]
+
+        return await asyncio.to_thread(_parse_csv)
 
     async def _fetch_graphql(self, source: Dict[str, Any]) -> List[Dict[str, Any]]:
         timeout_sec = self._source_timeout(source)
@@ -352,7 +410,6 @@ class DataPipeline:
 
         for attempt in range(self.max_retries + 1):
             try:
-                # websockets 12+ supports open_timeout
                 async with websockets.connect(url, open_timeout=timeout_sec) as ws:
                     if subscribe_msg:
                         msg_str = json.dumps(subscribe_msg) if isinstance(subscribe_msg, (dict, list)) else str(subscribe_msg)
@@ -382,17 +439,20 @@ class DataPipeline:
         if not path.exists():
             raise FileNotFoundError(f"File not found: {path}")
 
-        suffix = path.suffix.lower()
-        if suffix == ".csv":
-            content = path.read_text(encoding="utf-8")
-            delimiter = source.get("delimiter", ",")
-            reader = csv.DictReader(StringIO(content), delimiter=delimiter)
-            return [dict(row) for row in reader]
+        def _read_sync():
+            suffix = path.suffix.lower()
+            if suffix == ".csv":
+                content = path.read_text(encoding="utf-8")
+                delimiter = source.get("delimiter", ",")
+                reader = csv.DictReader(StringIO(content), delimiter=delimiter)
+                return [dict(row) for row in reader]
 
-        # JSON file
-        content = json.loads(path.read_text(encoding="utf-8"))
-        data_path = source.get("data_path")
-        return self._extract_path(content, data_path)
+            # JSON file
+            content = json.loads(path.read_text(encoding="utf-8"))
+            data_path = source.get("data_path")
+            return self._extract_path(content, data_path)
+
+        return await asyncio.to_thread(_read_sync)
 
     async def _fetch_source(self, source: Dict[str, Any]) -> List[Dict[str, Any]]:
         source_type = source.get("type", "").lower()
@@ -426,9 +486,10 @@ class DataPipeline:
                 state[source_name] = max(last_seen or "", highest_ts)
 
         self._save_incremental_state(state)
+        self.last_fetch_time.update(state)
         return filtered
 
-    async def run(self, output_path: Optional[str] = None) -> Dict[str, Any]:
+    async def run(self, output_path: Optional[str] = None, incremental: bool = False) -> Dict[str, Any]:
         """Execute the multi-source aggregation pipeline."""
         start_time = time.perf_counter()
         sources = self.config.get("sources", [])
@@ -463,6 +524,7 @@ class DataPipeline:
                     )
                     for item in result
                 ]
+                normalized = [r for r in normalized if r is not None]
                 records_by_source[source_name] = normalized
                 successful_sources_count += 1
             except Exception as e:
@@ -475,8 +537,12 @@ class DataPipeline:
                 })
 
         # Apply incremental filtering if enabled
-        if self.incremental_store:
-            state = self._load_incremental_state()
+        use_incremental = incremental or bool(self.incremental_store)
+        if use_incremental:
+            if self.incremental_store:
+                state = self._load_incremental_state()
+            else:
+                state = dict(self.last_fetch_time)
             all_records = self._apply_incremental_filter(records_by_source, state)
         else:
             all_records = []
@@ -492,6 +558,7 @@ class DataPipeline:
             "total_records": len(all_records),
             "records": len(all_records),
             "sources_count": len(sources),
+            "sources_processed": len(sources),
             "sources": len(sources),
             "successful_sources": successful_sources_count,
             "failed_sources": len(error_details),
@@ -499,10 +566,12 @@ class DataPipeline:
             "error_details": error_details,
             "source_breakdown": {name: len(items) for name, items in records_by_source.items()},
             "duration_seconds": round(duration, 4),
+            "execution_time_seconds": round(duration, 4),
         }
 
         output_data = {
             "records": all_records,
+            "data": all_records,
             "stats": stats,
         }
 
@@ -516,11 +585,16 @@ class DataPipeline:
         return output_data
 
 
+# Alias Pipeline to DataPipeline
+Pipeline = DataPipeline
+
+
 def main():
     parser = argparse.ArgumentParser(description="Multi-Source Data Aggregation & Normalization Pipeline")
     parser.add_argument("--config", "-c", required=True, help="Path to config JSON file")
     parser.add_argument("--output", "-o", help="Path to output JSON destination")
     parser.add_argument("--incremental-store", "-i", help="Path to incremental watermark state file")
+    parser.add_argument("--incremental", action="store_true", help="Run with incremental filtering")
     parser.add_argument("--timeout", "-t", type=float, default=10.0, help="Global request timeout in seconds")
     parser.add_argument("--verbose", "-v", action="store_true", help="Enable verbose debug logging")
 
@@ -536,7 +610,7 @@ def main():
         incremental_store=args.incremental_store,
         timeout=args.timeout,
     )
-    result = asyncio.run(pipeline.run(output_path=args.output))
+    result = asyncio.run(pipeline.run(output_path=args.output, incremental=args.incremental))
     print(f"Pipeline finished: {result['stats']['total_records']} records processed across {result['stats']['sources_count']} sources in {result['stats']['duration_seconds']}s.")
     if result["stats"]["failed_sources"] > 0:
         print(f"Warning: {result['stats']['failed_sources']} sources encountered errors.")
