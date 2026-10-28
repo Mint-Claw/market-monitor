@@ -1,0 +1,68 @@
+{
+  "timeout": 10.0,
+  "output": "data/output.json",
+  "incremental_store": "data/incremental_state.json",
+  "sources": [
+    {
+      "name": "binance_rest",
+      "type": "rest",
+      "url": "http://127.0.0.1:8080/rest",
+      "unit": "USD",
+      "mapping": {
+        "timestamp": "timestamp",
+        "value": "price"
+      }
+    },
+    {
+      "name": "coinbase_csv",
+      "type": "csv",
+      "url": "http://127.0.0.1:8080/csv",
+      "unit": "USD",
+      "mapping": {
+        "timestamp": "ts",
+        "value": "value"
+      }
+    },
+    {
+      "name": "uniswap_graphql",
+      "type": "graphql",
+      "url": "http://127.0.0.1:8080/graphql",
+      "query": "{ marketData { time amount currency } }",
+      "data_path": "marketData",
+      "unit": "ETH",
+      "mapping": {
+        "timestamp": "time",
+        "value": "amount",
+        "unit": "currency"
+      }
+    },
+    {
+      "name": "hyperliquid_ws",
+      "type": "websocket",
+      "url": "ws://127.0.0.1:8765/ws",
+      "max_messages": 3,
+      "unit": "USD",
+      "timeout": 5.0
+    },
+    {
+      "name": "local_historical_csv",
+      "type": "file",
+      "path": "data/prices.csv",
+      "unit": "USD",
+      "mapping": {
+        "timestamp": "timestamp",
+        "value": "price"
+      }
+    },
+    {
+      "name": "local_market_json",
+      "type": "file",
+      "path": "data/market_data.json",
+      "unit": "USD",
+      "mapping": {
+        "timestamp": "time",
+        "value": "val"
+      }
+    }
+  ]
+}

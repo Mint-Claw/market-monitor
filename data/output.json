@@ -1,0 +1,80 @@
+{
+  "records": [
+    {
+      "source": "local_market_json",
+      "timestamp": "2026-02-26T06:00:00Z",
+      "value": 49500.0,
+      "unit": "USD"
+    },
+    {
+      "source": "local_market_json",
+      "timestamp": "2026-02-26T06:30:00Z",
+      "value": 49650.0,
+      "unit": "USD"
+    },
+    {
+      "source": "local_historical_csv",
+      "timestamp": "2026-02-26T07:00:00Z",
+      "value": 49800.0,
+      "unit": "USD"
+    },
+    {
+      "source": "local_historical_csv",
+      "timestamp": "2026-02-26T07:15:00Z",
+      "value": 49850.5,
+      "unit": "USD"
+    },
+    {
+      "source": "local_historical_csv",
+      "timestamp": "2026-02-26T07:30:00Z",
+      "value": 49900.0,
+      "unit": "USD"
+    },
+    {
+      "source": "local_historical_csv",
+      "timestamp": "2026-02-26T07:45:00Z",
+      "value": 49920.0,
+      "unit": "USD"
+    }
+  ],
+  "stats": {
+    "total_records": 6,
+    "records": 6,
+    "sources_count": 6,
+    "sources": 6,
+    "successful_sources": 2,
+    "failed_sources": 4,
+    "errors": 4,
+    "error_details": [
+      {
+        "source": "binance_rest",
+        "error": "404, message='File not found', url='http://127.0.0.1:8080/rest'",
+        "type": "ClientResponseError"
+      },
+      {
+        "source": "coinbase_csv",
+        "error": "404, message='File not found', url='http://127.0.0.1:8080/csv'",
+        "type": "ClientResponseError"
+      },
+      {
+        "source": "uniswap_graphql",
+        "error": "404, message='Endpoint not found', url='http://127.0.0.1:8080/graphql'",
+        "type": "ClientResponseError"
+      },
+      {
+        "source": "hyperliquid_ws",
+        "error": "[Errno 111] Connect call failed ('127.0.0.1', 8765)",
+        "type": "ConnectionRefusedError"
+      }
+    ],
+    "source_breakdown": {
+      "binance_rest": 0,
+      "coinbase_csv": 0,
+      "uniswap_graphql": 0,
+      "hyperliquid_ws": 0,
+      "local_historical_csv": 4,
+      "local_market_json": 2
+    },
+    "duration_seconds": 0.6597
+  }
+}
